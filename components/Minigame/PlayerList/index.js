@@ -5,12 +5,22 @@ import Loader from "../Loader";
 import styles from "./playerSearch.scss";
 
 export default function PlayerList(props) {
-  if (
-    !props ||
-    !props.playersSearch ||
-    (!props.playersSearch.isLoaded && props.playersSearch.isLoading)
-  ) {
+  if (!props || !props.playersSearch) {
     return null;
+  }
+
+  console.warn("PlayerList > Props", props);
+
+  if (!props.playersSearch.isLoaded && props.playersSearch.isLoading) {
+    return (
+      <div className="container">
+        <div className="player-search">
+          <Loader />
+          <h2>Loading players...</h2>
+        </div>
+        <style jsx>{styles}</style>
+      </div>
+    );
   } else if (props.playersSearch.isLoaded && props.playersSearch.isError) {
     return (
       <div className="container">
@@ -36,18 +46,24 @@ export default function PlayerList(props) {
     props.playersSearch.isLoaded &&
     props.playersSearch.players.length > 0
   ) {
-    const style = {
-      float: "right"
-    };
     return (
       <div className="container">
         <div className="player-search">
-          <a className="form-button btn-lighter" style={style}>
-            Reload
+          <a
+            className="form-button btn-lighter right"
+            onClick={props.startGameHandler}
+          >
+            Restart
           </a>
           <h2>Players</h2>
           {props.playersSearch.players.map((player, i) => {
-            return <PlayerListItem player={player} key={i} />;
+            return (
+              <PlayerListItem
+                player={player}
+                teams={props.playersSearch.teams}
+                key={i}
+              />
+            );
           })}
         </div>
         <style jsx>{styles}</style>

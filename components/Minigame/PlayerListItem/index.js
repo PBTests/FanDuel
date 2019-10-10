@@ -19,8 +19,18 @@ export default function PlayerListItem(props) {
         ></div>
         <div className="details">
           <div className="name">{`${props.player.first_name} ${props.player.last_name}`}</div>
-          <div className="grey">something</div>
-          <div className="right grey">ss</div>
+          <div className="right grey">{props.player.position}</div>
+          <div className="grey">
+            Salary: ${utils.numberWithCommas(props.player.salary)}
+          </div>
+          <div className="grey">
+            Team:{" "}
+            {
+              props.teams.filter(
+                team => team.id == props.player.team._members[0]
+              )[0].name
+            }
+          </div>
         </div>
       </div>
       <style jsx>{styles}</style>

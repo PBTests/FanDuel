@@ -16,7 +16,8 @@ class MinigameContainer extends React.Component {
         isLoaded: false,
         isLoading: false,
         isError: false,
-        players: []
+        players: [],
+        teams: []
       }
     };
 
@@ -33,7 +34,8 @@ class MinigameContainer extends React.Component {
         isLoaded: false,
         isLoading: true,
         isError: false,
-        players: []
+        players: [],
+        teams: []
       }
     });
     //}, 0);
@@ -44,6 +46,7 @@ class MinigameContainer extends React.Component {
         console.log("RES:", data);
 
         var players = data.players ? data.players : {};
+        const teams = data.teams ? data.teams : {};
 
         // Randomize the results
         if (players) players = players.sort(() => 0.5 - Math.random());
@@ -58,7 +61,8 @@ class MinigameContainer extends React.Component {
             isLoaded: true,
             isLoading: false,
             isError: false,
-            players: players
+            players: players,
+            teams: teams
           }
         });
       });
@@ -74,20 +78,22 @@ class MinigameContainer extends React.Component {
               From {PLAYERS_DISPLAY_COUNT} randomly selected players pick the
               one that you think has the highest FPPG (Fanduel Points Per Game).
             </p>
-            {this.state.playersSearch.isLoading ? (
-              <Loader />
-            ) : (
+            {!this.state.playersSearch.isLoaded &&
+            !this.state.playersSearch.isLoading ? (
               <center>
                 <a className="form-button" onClick={this.startGame}>
-                  {this.state.playersSearch.isLoaded ? "Restart" : "Start"}
+                  Start
                 </a>
               </center>
-            )}
+            ) : null}
             &nbsp;
           </div>
         </div>
         <div className="container">
-          <PlayerList playersSearch={this.state.playersSearch} />
+          <PlayerList
+            playersSearch={this.state.playersSearch}
+            startGameHandler={this.startGame}
+          />
         </div>
       </React.Fragment>
     );

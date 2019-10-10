@@ -17,17 +17,13 @@
       background-position: 50% 50%;
       transition: all 0.8s;
       position: relative;
-      &.placeholder {
-        xbackground-image: url(/static/images/car.svg);
-        background-size: 50%;
-      }
     }
     > .details {
       background: #ffffff;
       z-index: 200;
       position: relative;
       padding: 3px;
-      min-height: 110px;
+      min-height: 80px;
       > div {
         padding: 4px 5px 4px 5px;
         font-size: 0.9em;
@@ -41,7 +37,7 @@
       .right {
         position: absolute;
         right: 5px;
-        bottom: 5px;
+        top: 5px;
       }
     }
   }
