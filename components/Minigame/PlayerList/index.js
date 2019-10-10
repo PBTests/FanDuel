@@ -5,12 +5,7 @@ import Loader from "../Loader";
 import styles from "./playerSearch.scss";
 
 export default function PlayerList(props) {
-  if (!props || !props.playersSearch) {
-    return null;
-  }
-
-  console.warn("PlayerList > Props", props);
-
+  if (!props || !props.playersSearch) return null;
   if (!props.playersSearch.isLoaded && props.playersSearch.isLoading) {
     return (
       <div className="container">
@@ -56,15 +51,24 @@ export default function PlayerList(props) {
             Restart
           </a>
           <h2>Players</h2>
-          {props.playersSearch.players.map((player, i) => {
-            return (
-              <PlayerListItem
-                player={player}
-                teams={props.playersSearch.teams}
-                key={i}
-              />
-            );
-          })}
+          {props.gameOver ? (
+            <div className="game-over-banner">
+              <center>
+                The game has finished. Hit "Restart" to play again!
+              </center>
+            </div>
+          ) : (
+            props.playersSearch.players.map((player, i) => {
+              return (
+                <PlayerListItem
+                  player={player}
+                  teams={props.playersSearch.teams}
+                  key={i}
+                  showSelectionModal={props.showSelectionModal}
+                />
+              );
+            })
+          )}
         </div>
         <style jsx>{styles}</style>
       </div>

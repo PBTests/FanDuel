@@ -11,7 +11,10 @@ export default function PlayerListItem(props) {
       : "none"
   };
   return (
-    <div className="player">
+    <div
+      className="player"
+      onClick={props.showSelectionModal.bind(null, props.player)}
+    >
       <div>
         <div
           className={`image${!hasThumb ? " placeholder" : ""}`}
