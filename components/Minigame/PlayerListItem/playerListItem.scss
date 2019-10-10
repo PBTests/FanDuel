@@ -1,0 +1,66 @@
+.player {
+  float: left;
+  width: 100%;
+
+  > div {
+    margin: 10px;
+    overflow: hidden;
+    -webkit-box-shadow: 2px 2px 3px -1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 2px 2px 3px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 3px -1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    > .image {
+      background: #efefef;
+      padding-top: 60%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 50% 50%;
+      transition: all 0.8s;
+      position: relative;
+      &.placeholder {
+        xbackground-image: url(/static/images/car.svg);
+        background-size: 50%;
+      }
+    }
+    > .details {
+      background: #ffffff;
+      z-index: 200;
+      position: relative;
+      padding: 3px;
+      min-height: 110px;
+      > div {
+        padding: 4px 5px 4px 5px;
+        font-size: 0.9em;
+      }
+      .name {
+        font-size: 1em;
+      }
+      .grey {
+        color: rgb(151, 149, 149);
+      }
+      .right {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+      }
+    }
+  }
+  :hover {
+    .image {
+      transform: scale(1.08);
+    }
+    > div {
+      cursor: pointer;
+    }
+  }
+}
+@media (min-width: 650px) {
+  .player {
+    width: 50%;
+  }
+}
+@media (min-width: 921px) {
+  .player {
+    width: 33.33333%;
+  }
+}

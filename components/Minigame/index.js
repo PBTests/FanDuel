@@ -1,14 +1,24 @@
 import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
 
+import Loader from "./Loader";
+import PlayerList from "./PlayerList";
+
 const PLAYERS_DISPLAY_COUNT = 6;
 const API_URL =
-  "https://gist.githubusercontent.com/liamjdouglas/bb40ee8721f1a9313c22c6ea0851a105/raw/6b6fc89d55ebe4d9b05c1469349af33651d7e7f1/Player.json";
+  "https://cors-anywhere.herokuapp.com/https://gist.githubusercontent.com/liamjdouglas/bb40ee8721f1a9313c22c6ea0851a105/raw/6b6fc89d55ebe4d9b05c1469349af33651d7e7f1/Player.json";
 
 class MinigameContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      playersSearch: {
+        isLoaded: false,
+        isLoading: false,
+        isError: false,
+        players: []
+      }
+    };
 
     this.startGame = this.startGame.bind(this);
   }
@@ -17,16 +27,16 @@ class MinigameContainer extends React.Component {
     console.warn("Fetching data...");
 
     // Set Loading state
-    setTimeout(() => {
-      this.setState({
-        vehicleSearch: {
-          isLoaded: false,
-          isLoading: true,
-          isError: false,
-          players: []
-        }
-      });
-    }, 0);
+    //setTimeout(() => {
+    this.setState({
+      playersSearch: {
+        isLoaded: false,
+        isLoading: true,
+        isError: false,
+        players: []
+      }
+    });
+    //}, 0);
 
     fetch(API_URL)
       .then(r => r.json())
@@ -44,7 +54,7 @@ class MinigameContainer extends React.Component {
         console.log("players:", players);
 
         this.setState({
-          playerSearch: {
+          playersSearch: {
             isLoaded: true,
             isLoading: false,
             isError: false,
@@ -60,18 +70,24 @@ class MinigameContainer extends React.Component {
         <div className="wide-content">
           <div className="container">
             <h2>Objective</h2>
-            <p>You will be presented with {PLAYERS_DISPLAY_COUNT} players. </p>
             <p>
-              Choose which player you think has the highest FPPG (Fanduel Points
-              Per Game).
+              From {PLAYERS_DISPLAY_COUNT} randomly selected players pick the
+              one that you think has the highest FPPG (Fanduel Points Per Game).
             </p>
-            <center>
-              <a className="form-button" onClick={this.startGame}>
-                Start Game
-              </a>
-            </center>
+            {this.state.playersSearch.isLoading ? (
+              <Loader />
+            ) : (
+              <center>
+                <a className="form-button" onClick={this.startGame}>
+                  {this.state.playersSearch.isLoaded ? "Restart" : "Start"}
+                </a>
+              </center>
+            )}
             &nbsp;
           </div>
+        </div>
+        <div className="container">
+          <PlayerList playersSearch={this.state.playersSearch} />
         </div>
       </React.Fragment>
     );
