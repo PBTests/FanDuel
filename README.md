@@ -42,3 +42,8 @@ or
 npm run export
 ```
 and check out the "out" directory that'll be created.
+
+## Demo 
+```
+https://fanduel-prod.pbuon.now.sh
+```
