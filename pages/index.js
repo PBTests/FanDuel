@@ -32,6 +32,7 @@ export default function Index() {
             <h2>Technical spec</h2>
             <ul className="text-list">
               <li>React.js (with Next.js) Isomorphic Web Application</li>
+              <li>Jest testing suite</li>
               <li>SASS CSS compilation and component sandboxed CSS</li>
               <li>Server Side Rendering - entry route will SSR</li>
               <li>Page Routing and 404 errors built-in</li>
