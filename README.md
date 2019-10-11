@@ -31,3 +31,14 @@ There are a number of integration tests that can be initiated by running the fol
 ```
 npm run test
 ```
+
+## Getting a production build
+To build a production version please run:
+```
+npm run build
+```
+or 
+```
+npm run export
+```
+and check out the "out" directory that'll be created.
