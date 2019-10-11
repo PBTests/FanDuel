@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PlayerListItem from "../PlayerListItem";
 import Loader from "../Loader";
 
-import styles from "./playerSearch.scss";
+import styles from "./playerList.scss";
 
 export default function PlayerList(props) {
   if (!props || !props.playersSearch) return null;

@@ -44,7 +44,10 @@ export default function Index() {
           <div className="container">
             <h2>Issues and what can be done better</h2>
             <ul className="text-list">
-              <li></li>
+              <li>
+                Had issues configuring my test runner (Jest) in conjunction with
+                Babel and Styled JSX (within my components).
+              </li>
             </ul>
           </div>
         </div>

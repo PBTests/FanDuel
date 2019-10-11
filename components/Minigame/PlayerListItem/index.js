@@ -28,11 +28,10 @@ export default function PlayerListItem(props) {
           </div>
           <div className="grey">
             Team:{" "}
-            {
+            {props.teams &&
               props.teams.filter(
                 team => team.id == props.player.team._members[0]
-              )[0].name
-            }
+              )[0].name}
           </div>
         </div>
       </div>

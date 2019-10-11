@@ -68,6 +68,7 @@ class MinigameContainer extends React.Component {
           players = players.sort(() => 0.5 - Math.random());
         }
 
+        // Update the state
         this.setState({
           playersSearch: {
             isLoaded: true,
